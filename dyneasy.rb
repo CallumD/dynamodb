@@ -17,6 +17,10 @@ module Dyneasy
     end
   end
 
+  def delete
+    @@table.items[self.send(@@table.hash_key.name)].delete
+  end
+
   def save
     key = @@table.hash_key.name
     self.send("#{key}=", SecureRandom.uuid()) unless self.send(key)
