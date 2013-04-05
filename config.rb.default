@@ -1,0 +1,11 @@
+require 'aws-sdk'
+
+AWS.config(dynamo_db_endpoint: '...')
+
+module DynamoDB
+  DynamoDB = AWS::DynamoDB.new(
+    :access_key_id => '...',
+    :secret_access_key => '...')
+end
+
+require './dyneasy'
