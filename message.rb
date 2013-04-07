@@ -1,4 +1,6 @@
 class Message
+require './dyneasy'
+
 include Dyneasy
   attr_accessor :text
 

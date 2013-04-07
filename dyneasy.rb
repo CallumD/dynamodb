@@ -1,11 +1,12 @@
 module Dyneasy
   require 'securerandom'
   require './hashable'
+  require './dynamodb'
 
   include Dyneasy::Hashable
 
   def self.included(base)
-    @@table = ::DynamoDB::DynamoDB.tables[base.to_s]
+    @@table = DynamoDB::DynamoDB.tables[base.to_s]
     base.class_eval do
       attr_accessor @@table.hash_key.name.to_sym
       def self.find(id)
