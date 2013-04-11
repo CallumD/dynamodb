@@ -1,12 +1,13 @@
 require 'sinatra/base'
+require './message'
 
-module DynamoDB
+module Dyntest
   class App < Sinatra::Base
-    require './message'
 
     get '/' do
-    end
-
+      table = DynamoDB::DynamoDB.tables['Message']
+      table.load_schema
+      "#{table.items.inject([]) { |res, item| res << item.attributes.to_h }}" end 
     get 'messages/' do
       Message.find('1')
     end
