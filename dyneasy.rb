@@ -11,6 +11,10 @@ module Dyneasy
       attr_accessor @@table.hash_key.name.to_sym
       attr_accessor :updated_at
       attr_accessor :created_at
+      def self.all
+        @@table.items.inject([]) { |res, item| res << self.new(item.attributes.to_h) }
+      end
+
       def self.find(id)
         hash_found = @@table.items[id].attributes.to_h
         found = self.new(hash_found)
